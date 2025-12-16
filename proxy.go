@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/url"
 	"os/exec"
 	"path"
 	"runtime"
@@ -24,7 +25,12 @@ type Proxy struct {
 }
 
 func NewProxy(cfg *Config) *Proxy {
-	store := NewStorage(path.Join(cfg.StorageRoot, "token.json"))
+	theUrl, err := url.Parse(cfg.URL)
+	if err != nil {
+		log.Fatalf("Failed to parse URL: %v", err)
+	}
+
+	store := NewStorage(path.Join(cfg.StorageRoot, theUrl.Hostname()+".json"))
 
 	if cfg.ClientID == "" {
 		clientInfo, err := store.GetClientInfo()
