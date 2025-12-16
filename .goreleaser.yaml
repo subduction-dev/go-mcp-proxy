@@ -36,6 +36,20 @@ archives:
       - goos: windows
         formats: [zip]
 
+homebrew_casks:
+- name: go-mcp-proxy
+  url:
+    verified: github.com/subduction-dev/go-mcp-proxy
+  hooks:
+    post:
+      install: |
+        if OS.mac?
+          system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/go-mcp-proxy"]
+        end
+  repository:
+    owner: subduction-dev
+    name: my-repo
+
 changelog:
   sort: asc
   filters:
