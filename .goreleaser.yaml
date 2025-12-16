@@ -17,8 +17,8 @@ builds:
   - env:
       - CGO_ENABLED=0
     goos:
-      - linux
-      - windows
+#      - linux
+#      - windows
       - darwin
 
 archives:
@@ -46,6 +46,9 @@ homebrew_casks:
         if OS.mac?
           system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/go-mcp-proxy"]
         end
+  repository:
+    owner: subduction-dev
+    name: homebrew-tap
 
 changelog:
   sort: asc
