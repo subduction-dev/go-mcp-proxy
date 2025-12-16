@@ -46,9 +46,6 @@ homebrew_casks:
         if OS.mac?
           system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/go-mcp-proxy"]
         end
-  repository:
-    owner: subduction-dev
-    name: my-repo
 
 changelog:
   sort: asc
