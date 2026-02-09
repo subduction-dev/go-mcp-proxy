@@ -76,6 +76,10 @@ func (s *Storage) write(data *StorageFormat) error {
 		return err
 	}
 
+	if err := os.MkdirAll(filepath.Dir(s.path), 0700); err != nil {
+		return err
+	}
+
 	return os.WriteFile(s.path, bytes, 0600)
 }
 
